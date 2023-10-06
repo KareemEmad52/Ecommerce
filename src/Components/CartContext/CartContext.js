@@ -53,7 +53,7 @@ function updateCountProduct(id,count){
 
 
 function onlinePayment(cartId , values){
-    return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,{
+    return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://kareememad52.github.io/ecommerce/#`,{
         shippingAddress : values
     },{
         headers
@@ -62,18 +62,20 @@ function onlinePayment(cartId , values){
 }
 
 
+function addToCart(id) { 
+    return axios.post('https://ecommerce.routemisr.com/api/v1/cart',{
+        productId: id
+    },{
+        headers
+    }).then((response)=> response )
+    .catch((errors)=> errors )
+}
+
 
 export default function CartContextProvider(props){
 
 
-    function addToCart(id) { 
-        return axios.post('https://ecommerce.routemisr.com/api/v1/cart',{
-            productId: id
-        },{
-            headers
-        }).then((response)=> response )
-        .catch((errors)=> errors )
-    }
+
 
     let [cartId , setCartId] = useState(null)
     

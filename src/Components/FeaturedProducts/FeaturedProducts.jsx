@@ -16,6 +16,8 @@ export default function FeaturedProducts() {
 
   let {addToWishlist} = useContext(wishlistContext)
   let {addToCart ,setcartProductNum} = useContext(cartContext)
+
+  
   async function addProductToCart(id){
       let {data}  = await addToCart(id);
       if(data?.status === 'success'){

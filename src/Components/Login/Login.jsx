@@ -36,7 +36,6 @@ export default function Login() {
       navigate('/')
       localStorage.setItem('userToken',data.token);
       setUserToken(data.token);
-      console.log(data.token);
     }
     
     
