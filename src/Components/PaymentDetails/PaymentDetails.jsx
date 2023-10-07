@@ -2,11 +2,13 @@ import React, { useContext } from 'react'
 import style from './PaymentDetails.module.css'
 import { useFormik } from 'formik'
 import { cartContext } from '../CartContext/CartContext'
-
+import { Helmet } from 'react-helmet'
+import logo from "../../Assets/Images/favicon.ico";
 
 export default function PaymentDetails() {
 
   let {onlinePayment ,cartId} = useContext(cartContext)
+
   async function handleDetailsSubmit(values){
     let {data} = await onlinePayment(cartId ,values);
     window.location.href = data?.session.url
@@ -23,6 +25,13 @@ export default function PaymentDetails() {
   })
 
   return <>
+
+<Helmet>
+                <meta charSet="utf-8" />
+                <title>PaymentDetails</title>
+                <link rel="canonical" href="http://mysite.com/example" />
+                <link rel="icon" href={logo} />
+            </Helmet>
   <h3 className='my-3'>Payment Details : </h3>
   
   <form onSubmit={formik.handleSubmit}>

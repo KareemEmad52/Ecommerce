@@ -53,7 +53,7 @@ function updateCountProduct(id,count){
 
 
 function onlinePayment(cartId , values){
-    return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://kareememad52.github.io/ecommerce/#/`,{
+    return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://kareememad52.github.io/ecommerce`,{
         shippingAddress : values
     },{
         headers
