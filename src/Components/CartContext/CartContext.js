@@ -51,10 +51,9 @@ function updateCountProduct(id,count){
     .catch((errors)=> errors )
 }
 
-let x = '#'
 
 function onlinePayment(cartId , values){
-    return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://kareememad52.github.io/ecommerce/${x}`,{
+    return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://kareememad52.github.io/ecommerce/#/`,{
         shippingAddress : values
     },{
         headers
