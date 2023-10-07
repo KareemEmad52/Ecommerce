@@ -4,14 +4,19 @@ import { useFormik } from 'formik'
 import { cartContext } from '../CartContext/CartContext'
 import { Helmet } from 'react-helmet'
 import logo from "../../Assets/Images/favicon.ico";
-
+import toast from 'react-hot-toast'
 export default function PaymentDetails() {
 
   let {onlinePayment ,cartId} = useContext(cartContext)
 
   async function handleDetailsSubmit(values){
     let {data} = await onlinePayment(cartId ,values);
-    window.location.href = data?.session.url
+    if(data.status == "success") {
+      window.location.href = data?.session.url
+    } else {
+      toast.error('try again !')
+    }
+    
   }
   
   let formik = useFormik({
