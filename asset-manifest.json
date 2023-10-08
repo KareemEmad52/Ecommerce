@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ecommerce/static/css/main.f71703df.css",
-    "main.js": "/ecommerce/static/js/main.848fd91d.js",
+    "main.css": "/ecommerce/static/css/main.e9c78a25.css",
+    "main.js": "/ecommerce/static/js/main.d09a5c8e.js",
     "static/js/787.dcc73137.chunk.js": "/ecommerce/static/js/787.dcc73137.chunk.js",
     "static/media/photo-camera-balancing-with-yellow-background.jpg": "/ecommerce/static/media/photo-camera-balancing-with-yellow-background.1c6e1bdfd3838bcf097b.jpg",
     "static/media/delicious-burger-with-many-ingredients-isolated-white-background-tasty-cheeseburger-splash-sauce.jpg": "/ecommerce/static/media/delicious-burger-with-many-ingredients-isolated-white-background-tasty-cheeseburger-splash-sauce.d847ae73c56b71898827.jpg",
@@ -26,12 +26,12 @@
     "static/media/slick.woff": "/ecommerce/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/ecommerce/index.html",
     "static/media/success-filled-custom.svg": "/ecommerce/static/media/success-filled-custom.ada89439087853c101c8ff156df1a21b.svg",
-    "main.f71703df.css.map": "/ecommerce/static/css/main.f71703df.css.map",
-    "main.848fd91d.js.map": "/ecommerce/static/js/main.848fd91d.js.map",
+    "main.e9c78a25.css.map": "/ecommerce/static/css/main.e9c78a25.css.map",
+    "main.d09a5c8e.js.map": "/ecommerce/static/js/main.d09a5c8e.js.map",
     "787.dcc73137.chunk.js.map": "/ecommerce/static/js/787.dcc73137.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f71703df.css",
-    "static/js/main.848fd91d.js"
+    "static/css/main.e9c78a25.css",
+    "static/js/main.d09a5c8e.js"
   ]
 }
