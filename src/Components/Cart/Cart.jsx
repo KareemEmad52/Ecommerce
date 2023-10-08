@@ -12,101 +12,101 @@ import cartImage from '../../Assets/Images/preview.png'
 
 export default function Cart() {
 
-  let [cartDeatails,setCartDetails] = useState(null)
-  let [isLoading , setLoading] = useState(false)
-  let {getUserCart ,removeCartItem , updateCountProduct , setcartProductNum } = useContext(cartContext);
+  let [cartDeatails, setCartDetails] = useState(null)
+  let [isLoading, setLoading] = useState(false)
+  let { getUserCart, removeCartItem, updateCountProduct, setcartProductNum } = useContext(cartContext);
 
 
-  async function RemoveItem(id){
+  async function RemoveItem(id) {
     setLoading(true)
-    let {data} = await removeCartItem(id);
+    let { data } = await removeCartItem(id);
     setCartDetails(data)
     setcartProductNum(data?.numOfCartItems)
     setLoading(false)
   }
-  
-  async function updateCount(id,count){
-    let {data} = await updateCountProduct(id ,count);
+
+  async function updateCount(id, count) {
+    let { data } = await updateCountProduct(id, count);
     setCartDetails(data);
   }
 
-  async function getCartDetails(){
+  async function getCartDetails() {
     setLoading(true)
-    let {data} = await getUserCart();
+    let { data } = await getUserCart();
     setCartDetails(data)
     setLoading(false)
   }
 
 
- 
 
-  useEffect(()=>{
+
+  useEffect(() => {
     getCartDetails()
 
-  },[])
+  }, [])
 
   return <>
-  <Helmet>
-                <meta charSet="utf-8" />
-                <title>Shoping Cart</title>
-                <link rel="canonical" href="http://mysite.com/example" />
-                <link rel="icon" href={logo} />
-            </Helmet>
-  
-    {isLoading ? <div className='vh-100 w-100 d-flex py-5 justify-content-center align-items-center'> 
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>Shoping Cart</title>
+      <link rel="canonical" href="http://mysite.com/example" />
+      <link rel="icon" href={logo} />
+    </Helmet>
 
-<Puff
-height="80"
-width="80"
-radius={1}
-color="#4fa94d"
-ariaLabel="puff-loading"
-wrapperStyle={{}}
-wrapperClass=""
-visible={true}
-/>
+    {isLoading ? <div className='vh-100 w-100 d-flex py-5 justify-content-center align-items-center'>
 
- </div> : <>{cartDeatails ? <div className='w-75 my-2 mx-auto p-3 bg-main-light'>
-          <h2>Shoping Cart</h2>
-          <h4 className='h6 text-main'>Cart Items : {cartDeatails.numOfCartItems}</h4>
-          <h4 className='h6 text-main'>Total Cart Price  : {cartDeatails.data.totalCartPrice} EGP</h4>
+      <Puff
+        height="80"
+        width="80"
+        radius={1}
+        color="#4fa94d"
+        ariaLabel="puff-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+      />
 
-          {cartDeatails.data.products.map((product)=>( <div key={product.product.id} className='row border-bottom py-2 align-items-center'>
+    </div> : <>{cartDeatails ? <div className='w-75 my-2 mx-auto p-3 bg-main-light'>
+      <h2>Shoping Cart</h2>
+      <h4 className='h6 text-main'>Cart Items : {cartDeatails.numOfCartItems}</h4>
+      <h4 className='h6 text-main'>Total Cart Price  : {cartDeatails.data.totalCartPrice} EGP</h4>
 
-              <div className="col-md-2">
-                <img className='w-100  img-thumbnail' src={product.product.imageCover} alt="" />
-              </div>
+      {cartDeatails.data.products.map((product) => (<div key={product.product.id} className='row border-bottom py-2 align-items-center'>
 
-              <div className="col-md-10 ">
-                    <div className="row justify-content-between align-items-center">
+        <div className="col-md-2">
+          <img className='w-100  img-thumbnail' src={product.product.imageCover} alt="" />
+        </div>
 
-                        <div className='col-md-10'>
-                          <h4 className='h5 '>{product.product.title}</h4>
-                          <h6 className='text-main'>{product.price}</h6>
+        <div className="col-md-10 ">
+          <div className="row justify-content-between align-items-center">
 
-                          <button onClick={()=> RemoveItem(product.product.id)} className='btn mx-0 p-0 my-2'><i className="fa-solid fa-trash text-danger"></i> Remove</button>
-                        </div>
+            <div className='col-md-10'>
+              <h4 className='h5 '>{product.product.title}</h4>
+              <h6 className='text-main'>{product.price}</h6>
 
-                        <div className='col-md-2'>
-                          <button onClick={()=> updateCount(product.product.id,product.count+1 )} className='btn brdr-main'>+</button>
-                          <span className='mx-2 '>{product.count}</span>
-                          <button onClick={()=> updateCount(product.product.id,product.count-1 )} className='btn brdr-main'>-</button>
-                        </div>
+              <button onClick={() => RemoveItem(product.product.id)} className='btn mx-0 p-0 my-2'><i className="fa-solid fa-trash text-danger"></i> Remove</button>
+            </div>
 
-
-                    </div>
-              </div>
+            <div className='col-md-2'>
+              <button onClick={() => updateCount(product.product.id, product.count + 1)} className='btn brdr-main'>+</button>
+              <span className='mx-2 '>{product.count}</span>
+              <button onClick={() => updateCount(product.product.id, product.count - 1)} className='btn brdr-main'>-</button>
+            </div>
 
 
+          </div>
+        </div>
 
 
-          </div>))}
 
-          <Link to={'/paymentDetails'} className='btn w-100 bg-main text-white text-center my-2 '>Online Payment</Link>
+
+      </div>))}
+
+      <Link to={'/paymentDetails'} className='btn w-100 bg-main text-white text-center my-2 '>Online Payment</Link>
 
 
     </div> : <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
       <img src={cartImage} alt="" />
-    </div> }</>}
+    </div>}</>}
   </>
 }

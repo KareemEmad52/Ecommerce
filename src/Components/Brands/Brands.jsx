@@ -3,7 +3,8 @@ import style from './Brands.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBrands } from '../Redux/BrandsReducer'
 import { Puff } from 'react-loader-spinner'
-
+import { Helmet } from "react-helmet";
+import logo from "../../Assets/Images/favicon.ico";
 
 export default function Brands() {
 
@@ -15,6 +16,12 @@ export default function Brands() {
   },[])
 
   return <>
+  <Helmet>
+        <meta charSet="utf-8" />
+        <title>Brands</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+        <link rel="icon" href={logo} />
+      </Helmet>
 
 {loading ? <div className='vh-100 w-100 d-flex py-5 justify-content-center align-items-center'> 
 

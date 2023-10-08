@@ -16,7 +16,7 @@ export default function FeaturedProducts() {
 
   let {addToWishlist} = useContext(wishlistContext)
   let {addToCart ,setcartProductNum} = useContext(cartContext)
-
+  
   
   async function addProductToCart(id){
       let {data}  = await addToCart(id);
@@ -64,6 +64,8 @@ export default function FeaturedProducts() {
     
   }
 
+
+
   return <>
       {isLoading ? <div className='vh-100 w-100 d-flex py-5 justify-content-center align-items-center'> 
 
@@ -81,7 +83,7 @@ export default function FeaturedProducts() {
        </div> : <>
         <h2 className='py-2'>Featured Products</h2>
         <div className="row py-2">
-          {data?.data.data.map((product)=> <div key={product.id} className='col-md-2 position-relative '>
+          {data?.data.data.map((product)=> <div key={product.id} className='col-lg-3 col-xl-2 col-md-3 col-sm-6 position-relative '>
            
             <div className='product cursor-pointer py-3 px-2'>
             <Link to={`/productdetails/${product.id}`}>

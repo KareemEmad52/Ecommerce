@@ -112,7 +112,7 @@ export default function Wishlist() {
               </div>
 
               <div className='col-md-3 text-center'>
-                  <button onClick={()=> addProductToCart(item.id)} className='btn bg-main text-white '>Add to cart</button>
+                  <button onClick={()=> addProductToCart(item.id)} className='btn bg-main text-white my-3'>Add to cart</button>
               </div>
 
 

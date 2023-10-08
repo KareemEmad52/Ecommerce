@@ -15,7 +15,8 @@ export default function CategorySlider() {
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1500
+    autoplaySpeed: 1500,
+    arrows:false,
   };
 
 
@@ -34,7 +35,7 @@ export default function CategorySlider() {
         <h2 className='h5 my-3  fw-medium'>Shop Popular Category </h2>
       <Slider {...settings}>
       {data?.data.data.map((item)=>(
-          <img key={item._id} height={225} src={item.image} alt={item.title} />
+          <img key={item._id} height={225} className='w-100' src={item.image} alt={item.title} />
           ))}
       </Slider>
 
