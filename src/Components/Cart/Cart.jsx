@@ -14,13 +14,17 @@ export default function Cart() {
 
   let [cartDeatails, setCartDetails] = useState(null)
   let [isLoading, setLoading] = useState(false)
-  let { getUserCart, removeCartItem, updateCountProduct, setcartProductNum } = useContext(cartContext);
+  let { getUserCart, removeCartItem, updateCountProduct, setcartProductNum, clearCartItem} = useContext(cartContext);
 
 
   async function RemoveItem(id) {
     setLoading(true)
     let { data } = await removeCartItem(id);
-    setCartDetails(data)
+    if (data?.numOfCartItems == 0 ){
+      setCartDetails(null)
+    } else {
+      setCartDetails(data)
+    }
     setcartProductNum(data?.numOfCartItems)
     setLoading(false)
   }
@@ -28,6 +32,12 @@ export default function Cart() {
   async function updateCount(id, count) {
     let { data } = await updateCountProduct(id, count);
     setCartDetails(data);
+  }
+
+  async function clearCart(){
+    let res = await clearCartItem()
+    setCartDetails(null)
+    setcartProductNum('0')
   }
 
   async function getCartDetails() {
@@ -68,10 +78,12 @@ export default function Cart() {
 
     </div> : <>{cartDeatails ? <div className='w-75 my-2 mx-auto p-3 bg-main-light'>
       <h2>Shoping Cart</h2>
-      <h4 className='h6 text-main'>Cart Items : {cartDeatails.numOfCartItems}</h4>
-      <h4 className='h6 text-main'>Total Cart Price  : {cartDeatails.data.totalCartPrice} EGP</h4>
+      <h4 className='h6 text-main'>Cart Items : {cartDeatails?.numOfCartItems}</h4>
+      <h4 className='h6 text-main'>Total Cart Price  : {cartDeatails?.data.totalCartPrice} EGP</h4>
 
-      {cartDeatails.data.products.map((product) => (<div key={product.product.id} className='row border-bottom py-2 align-items-center'>
+      
+
+      {cartDeatails?.data.products.map((product) => (<div key={product.product.id} className='row border-bottom py-2 align-items-center'>
 
         <div className="col-md-2">
           <img className='w-100  img-thumbnail' src={product.product.imageCover} alt="" />
@@ -90,7 +102,13 @@ export default function Cart() {
             <div className='col-md-2'>
               <button onClick={() => updateCount(product.product.id, product.count + 1)} className='btn brdr-main'>+</button>
               <span className='mx-2 '>{product.count}</span>
-              <button onClick={() => updateCount(product.product.id, product.count - 1)} className='btn brdr-main'>-</button>
+              <button onClick={() => {
+                if (product.count > 1){
+                  updateCount(product.product.id, product.count - 1)
+                } else {
+                  RemoveItem(product.product.id)
+                }
+              }} className='btn brdr-main'>-</button>
             </div>
 
 
@@ -102,8 +120,9 @@ export default function Cart() {
 
       </div>))}
 
-      <Link to={'/paymentDetails'} className='btn w-100 bg-main text-white text-center my-2 '>Online Payment</Link>
-
+      {cartDeatails.numOfCartItems != 0 ? <button onClick={()=> clearCart()} className='btn btn-danger w-100 my-3'>Clear Cart</button> : " "}
+      {cartDeatails.numOfCartItems != 0 ? <Link to={'/paymentDetails'} className='btn w-100 bg-main text-white text-center my-2 border-bottom'>Online Payment</Link> : " " }
+      
 
     </div> : <div className='w-100 h-100 d-flex justify-content-center align-items-center'>
       <img src={cartImage} alt="" />

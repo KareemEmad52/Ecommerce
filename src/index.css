@@ -153,5 +153,12 @@ input:focus {
     .CartCont{
         margin-top: 15px;
     }
+    .heartIcon{
+        top: 83%;
+        font-size: 35px;
+    }
+    .product:hover .heartIcon {
+        top: 83%;
+    }
 }
 

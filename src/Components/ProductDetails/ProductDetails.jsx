@@ -18,7 +18,7 @@ export default function ProductDetails() {
     if(data?.status === 'success'){
       toast.success('Product Add Successfully',{
         duration: 3000,
-        position: 'top-right',
+        position: 'top-center',
 
         style :{
           border :' 2px solid #61d345'
@@ -30,7 +30,7 @@ export default function ProductDetails() {
       console.log('error');
       toast.error('Failed to add product',{
         duration: 3000,
-        position: 'top-right',
+        position: 'top-center',
 
         style :{
           border :' 2px solid #ff4b4b'

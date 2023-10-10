@@ -67,6 +67,13 @@ function onlinePayment(cartId, values) {
     .catch((errors) => errors);
 }
 
+function clearCartItem() { 
+  return axios.delete(`https://ecommerce.routemisr.com/api/v1/cart`,{
+    headers
+  }).then((response) => response)
+  .catch((errors) => errors);
+ }
+
 function addToCart(id) {
   return axios
     .post(
@@ -113,6 +120,7 @@ export default function CartContextProvider(props) {
         getUserCart,
         removeCartItem,
         updateCountProduct,
+        clearCartItem
       }}
     >
       {props.children}

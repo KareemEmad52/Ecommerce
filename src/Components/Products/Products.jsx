@@ -14,22 +14,24 @@ import { wishlistContext } from "../WishlistContext/WishlistContext";
 export default function Products() {
   const [searchTerm, setSearchTerm] = useState("");
   let { addToWishlist } = useContext(wishlistContext);
-  let { addToCart } = useContext(cartContext);
+  let { addToCart, setcartProductNum } = useContext(cartContext);
   async function addProductToCart(id) {
     let { data } = await addToCart(id);
     if (data?.status === "success") {
       toast.success("Product Add Successfully", {
         duration: 3000,
-        position: "top-right",
+        position: "top-center",
 
         style: {
           border: " 2px solid #61d345",
         },
       });
+
+      setcartProductNum(data?.numOfCartItems)
     } else {
       toast.error("Failed to add product", {
         duration: 3000,
-        position: "top-right",
+        position: "top-center",
 
         style: {
           border: " 2px solid #ff4b4b",
